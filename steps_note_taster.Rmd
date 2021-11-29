@@ -1,0 +1,54 @@
+---
+title: "raster"
+author: "willow_liu"
+date: "11/29/2021"
+output: html_document
+---
+
+###1. import data
+library(raster) 
+   raster(here())
+   
+
+###2. 查看file (raster)
+library(fs)
+dir_info(数据集)
+
+
+###3. 把raster data选出来 (raster)
+library(tidyverse)
+listfiles<-dir_info("prac3_data/") %>%
+filter(str_detect(path, ".tif")) %>%
+dplyr::select(path)%>%
+pull() [$]
+
+###4. 把它录入到raster stack里
+stack()
+
+
+###5. visualize
+1. crop(数据库,.) [相当于merge 把两个变量加在一起]
+2. mask(., 数据库，na.rm=True) [get raster data within the outline of the shape:]
+
+3. hist(raster::subset(exactAus, "Mar"), col="red", main ="March temperature")
+
+3. hist witj ggplot
+   -把raster 转变成dataframe
+   as.data.frame()
+   -library(ggplot)
+   -set up basic histogram
+   gghist<-ggplot(数据库,
+                   aes(x=x轴))+
+           geom_histogram(color="颜色",
+           fill="颜色")+
+           labs(title="",
+                x="",
+                y="")
+    -加条辅助线 显示中位数
+    gghist + geom_vline(aes(xintercept=mean(Mar, na.rm=True)), color="颜色", linetype="", size=1/2) + theme(plot.title=)
+
+theme就是主题的设定而已
+    
+     —
+
+
